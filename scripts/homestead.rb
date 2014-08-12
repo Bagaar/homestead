@@ -21,19 +21,19 @@ class Homestead
     config.vm.network "forwarded_port", guest: 5432, host: 54320
 
     # Configure The Public Key For SSH Access
-    config.vm.provision "shell" do |s|
-      s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
-      s.args = [File.read(File.expand_path(settings["authorize"]))]
-    end
+    #config.vm.provision "shell" do |s|
+    #  s.inline = "echo $1 | tee -a /home/vagrant/.ssh/authorized_keys"
+    #  s.args = [File.read(File.expand_path(settings["authorize"]))]
+    #end
 
     # Copy The SSH Private Keys To The Box
-    settings["keys"].each do |key|
-      config.vm.provision "shell" do |s|
-        s.privileged = false
-        s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
-        s.args = [File.read(File.expand_path(key)), key.split('/').last]
-      end
-    end
+    #settings["keys"].each do |key|
+    #  config.vm.provision "shell" do |s|
+    #    s.privileged = false
+    #    s.inline = "echo \"$1\" > /home/vagrant/.ssh/$2 && chmod 600 /home/vagrant/.ssh/$2"
+    #    s.args = [File.read(File.expand_path(key)), key.split('/').last]
+    #  end
+    #end
 
     # Copy The Bash Aliases
     config.vm.provision "shell" do |s|
