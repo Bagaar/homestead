@@ -1,5 +1,9 @@
 class Homestead
   def Homestead.configure(config, settings)
+    # create Code folder
+    require 'fileutils'
+    FileUtils::mkdir_p 'Code'
+
     # Configure The Box
     config.vm.box = "laravel/homestead"
     config.vm.hostname = "homestead"
